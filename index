@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cemex Radio</title>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<link rel="apple-touch-icon" href="cemex-icon.png" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+		window.onload = function() { playStream(); };
+		function playStream() {
+		  try {
+		    var myaudio = new Audio('http://198.178.121.15:9986/');
+		    myaudio.id = 'playerMyAdio';
+		    myaudio.play();
+		  } catch (e) {
+		    alert('no audio support!');
+		  }
+		}
+</script>
+</head>
+<body>
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+(function(){
+	var i = document.links.length;
+	while(i--)
+	{
+		if(/^javascript:/.test(document.links[i].href))
+		{
+			var linkStyle = document.links[i].style;
+			document.links[i].href = "#removeme_" + document.links[i].href;
+			linkStyle.backgroundColor = "#1E528C";
+			linkStyle.color = "#fff";
+			linkStyle.fontWeight = "bold";
+		}
+	}
+})();
+});
+</script>
+<img alt="" src="bg.jpg" />
+ <button onclick="playStream()"> Escuchar Radio Cemex</button>
+
+
+<a href="javascript:#removeme_" class="jQueryBookmark" > Descargar </a>
+    </form>
+</body>
+</html>
