@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* CSS Document */
+html {color:#929292; padding:0; margin:0; background:#fff url(background-html.png) repeat-y center;
+}
+body {width:94%; height:100%; background:#fff; padding:0; text-align:center; margin:0 3%; box-shadow:0px 0px 6px #000;
+}
+body img { width:80%;
+}
+header { width:100%; background:transparent url(header-bg.png) center no-repeat; min-height:29px; padding:6px 0 0; margin:4px 0 0;
+}
+header a { width:10%; float:right; margin:0 4px;
+}
+section.player { background:transparent url(player-bg.png) center no-repeat; text-align:center; height:34px;
+}
+#audio { position:relative; margin:0 auto; width:70%; border-radius:18px; background:#343a3c;
+}
+footer { border-top:solid 8px #fe0000; color:#00386e; padding:12px 0; font-family:"Helvetica Neue", "Helvetica", "Arial", sans-serif; font-size:0.6em; margin:24px 0 0; position:relative; bottom:0;
+}
+footer a { color:#00386e; text-decoration:none;
+}
+footer strong { color:#fe0000;
+}
+#playcontrols { text-align: center; margin:0 auto; position:relative; padding:8px 0
+}
+#playcontrols img { width:100px;
+}
+#playcontrols #activityindicator, #playcontrols #stopbutton { display: none;
+}
+#textpositiondiv { margin:12px 0; position:relative; color:#00386e; padding:8px 0;
+}
