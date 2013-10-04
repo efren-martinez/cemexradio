@@ -6,43 +6,39 @@
 <link rel="apple-touch-icon" href="cemex-icon.png" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript">
-		window.onload = function() { playStream(); };
-		function playStream() {
-		  try {
-		    var myaudio = new Audio('http://198.178.121.15:9986/');
-		    myaudio.id = 'playerMyAdio';
-		    myaudio.play();
-		  } catch (e) {
-		    alert('no audio support!');
-		  }
-		}
-</script>
+<script src="phonegap.js"></script>
+<script type="text/javascript" charset="utf-8" src="scripts/html5audio.js"></script>
+<script type="text/javascript" charset="utf-8" src="scripts/cordova-2.0.0.js"></script>
+
 </head>
 <body>
-<script language="javascript" type="text/javascript">
-$(document).ready(function(){
-(function(){
-	var i = document.links.length;
-	while(i--)
-	{
-		if(/^javascript:/.test(document.links[i].href))
-		{
-			var linkStyle = document.links[i].style;
-			document.links[i].href = "#removeme_" + document.links[i].href;
-			linkStyle.backgroundColor = "#1E528C";
-			linkStyle.color = "#fff";
-			linkStyle.fontWeight = "bold";
-		}
-	}
-})();
-});
-</script>
+<header>
+    <a href="http://www.flickr.com/photos/cemex"><img src="flickr.png" /></a>
+    <a href="http://www.youtube.com/user/CEMEXMx"><img src="youtube.png" /></a>
+    <a href="https://twitter.com/CEMEXMx"><img src="twitter.png" /></a>
+    <a href="https://www.facebook.com/cemexmexico"><img src="facebook.png" /></a>
+</header>    
 <img alt="" src="bg.jpg" />
- <button onclick="playStream()"> Escuchar Radio Cemex</button>
-
-
-<a href="javascript:#removeme_" class="jQueryBookmark" > Descargar </a>
-    </form>
+<section class="player">
+<div id="playcontrols">
+		  <a href="#" id="playbutton" onClick="html5audio.play();return false;"><img src="playbutton.png" /></a>
+		  <a href="#" id="activityindicator" onClick="html5audio.stop();return false;"><img src="activityindicator.gif" /></a>
+		  <a href="#" id="stopbutton" onClick="html5audio.stop();return false;"><img src="stopbutton.png" /></a>
+</div>
+</section>
+<div id="textpositiondiv">Reproducci&oacute;n: <span id="textposition">detenido</span></div>
+<a href="mailto:efren@studiodepweb.com"><img alt="" src="comentarios.png" /></a>
+<a href="#"><img alt="" src="califica.png" /></a>
+<script type="text/javascript">
+		  playButton = document.getElementById('playbutton');
+		  stopButton = document.getElementById('stopbutton');
+		  activityIndicator = document.getElementById('activityindicator');
+		  textPosition = document.getElementById('textposition');
+</script>
+<footer>
+Copyrights &copy; CEMEX S.A.B. de C.V. Derechos Reservados<br>
+<strong>&Iota;</strong><a href="#"> Contacto </a> <strong>&Iota;</strong><a href="http://www.cemexmexico.com/PoliticasDePrivacidad.aspx"> Pol&iacute;ticas de Privacidad </a> <strong>&Iota;</strong><a href="http://www.cemexmexico.com/TerminosCondiciones.aspx"> T&eacute;rminos y Condiciones </a><strong>&Iota;</strong><br>
+Protecci&oacute;n de datos Personales
+</footer>
 </body>
 </html>
