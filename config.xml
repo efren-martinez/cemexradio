@@ -3,7 +3,8 @@
     xmlns:gap = "http://phonegap.com/ns/1.0"
     id        = "com.cemexradio.studiodep"
     version   = "1.0.0">
-
+<icon src="http://pop-radio.mx/CEMEXradio/App/images/cemex-icon.png" />
+<gap:splash src="http://pop-radio.mx/CEMEXradio/App/images/cemex-splash.png" />
 <name>Cemex Radio</name>
 
 <description>
