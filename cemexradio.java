@@ -1,4 +1,4 @@
-package com.yournamespace.yourappname;
+package com.cemexradio.studiodep;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
