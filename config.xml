@@ -14,8 +14,5 @@ CemexRadio.
 <author href="https://studiodepweb.com" email="info@studiodepweb.com">
 Studio Dep
 </author>
-<feature name="BackgroundServicePlugin">
-      <param name="android-package" value="com.red_folder.phonegap.plugin.backgroundservice.BackgroundServicePlugin"/>
-</feature>
 
 </widget>
