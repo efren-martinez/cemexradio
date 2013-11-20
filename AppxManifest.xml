@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="Studio.com.CemexRadio" 
+          Version="1.1.8.0" 
+          Publisher="CN=StudioDep, O=StudioDep, L=Guadalajara, S=Jalisco, C=Mexico">
+  <Properties>
+    <DisplayName>Cemex Radio </DisplayName>
+    <PublisherDisplayName>Studio Dep</PublisherDisplayName>
+    <Logo>images/cemex-icon.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>8.0</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="es-mx" />
+  </Resources>
+  <Applications>
+    <Application Id="CemexRadio" StartPage="index.html">
+      <VisualElements DisplayName="CemexRadio" Description="Streaming Cemex Radio"
+           Logo="images/cemex-icon.png" SmallLogo="images/cemex-icon.png"  
+           ForegroundText="dark" BackgroundColor="#FFFFFF">
+         <SplashScreen Image="images/cemex-splash.jpg" />
+      </VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+     <Capability Name="internetClient"/>
+  </Capabilities>
+</Package>
