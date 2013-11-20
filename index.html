@@ -1,44 +1,74 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Cemex Radio</title>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<link rel="apple-touch-icon" href="http://www.pop-radio.mx/CEMEXradio/App/images/cemex-icon.png" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="style.css" rel="stylesheet" type="text/css" />
-<script src="phonegap.js"></script>
-<script type="text/javascript" charset="utf-8" src="html5audio.js"></script>
-<script type="text/javascript" charset="utf-8" src="cordova-2.1.0.js"></script>
-
-</head>
-<body>
-<header>
-    <a href="http://www.flickr.com/photos/cemex"><img src="http://www.pop-radio.mx/CEMEXradio/App/images/flickr.png" /></a>
-    <a href="http://www.youtube.com/user/CEMEXMx"><img src="http://www.pop-radio.mx/CEMEXradio/App/images/youtube.png" /></a>
-    <a href="https://twitter.com/CEMEXMx"><img src="http://www.pop-radio.mx/CEMEXradio/App/images/twitter.png" /></a>
-    <a href="https://www.facebook.com/cemexmexico"><img src="http://www.pop-radio.mx/CEMEXradio/App/images/facebook.png" /></a>
-</header>    
-<img alt="" src="http://www.pop-radio.mx/CEMEXradio/App/images/bg.jpg" />
-<section class="player">
-<div id="playcontrols">
-		  <a href="#" id="playbutton" onClick="html5audio.play();return false;"><img src="http://www.pop-radio.mx/CEMEXradio/App/images/playbutton.png" /></a>
-		  <a href="#" id="activityindicator" onClick="html5audio.stop();return false;"><img src="http://www.pop-radio.mx/CEMEXradio/App/images/activityindicator.gif" /></a>
-		  <a href="#" id="stopbutton" onClick="html5audio.stop();return false;"><img src="http://www.pop-radio.mx/CEMEXradio/App/images/stopbutton.png" /></a>
-</div>
-</section>
-<div id="textpositiondiv">Reproducci&oacute;n: <span id="textposition">detenido</span></div>
-<a href="mailto:efren@studiodepweb.com"><img alt="" src="http://www.pop-radio.mx/CEMEXradio/App/images/comentarios.png" /></a>
-<a href="#"><img alt="" src="http://www.pop-radio.mx/CEMEXradio/App/images/califica.png" /></a>
-<script type="text/javascript">
-		  playButton = document.getElementById('playbutton');
-		  stopButton = document.getElementById('stopbutton');
-		  activityIndicator = document.getElementById('activityindicator');
-		  textPosition = document.getElementById('textposition');
-</script>
-<footer>
-Copyrights &copy; CEMEX S.A.B. de C.V. Derechos Reservados<br>
-<strong>&Iota;</strong><a href="#"> Contacto </a> <strong>&Iota;</strong><a href="http://www.cemexmexico.com/PoliticasDePrivacidad.aspx"> Pol&iacute;ticas de Privacidad </a> <strong>&Iota;</strong><a href="http://www.cemexmexico.com/TerminosCondiciones.aspx"> T&eacute;rminos y Condiciones </a><strong>&Iota;</strong><br>
-Protecci&oacute;n de datos Personales
-</footer>
-</body>
+    <head>
+        <title>CEMEX RADIO</title>
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/version.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/gral.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/jquery-1-10-1-min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/migrate.js"></script>
+        <script type="text/javascript" src="scripts/html5audio.js"></script>
+        <script type="text/javascript" charset="utf-8">
+			var playButton, stopButton, activityIndicator, textPosition, playingDIV;
+			var iPadAgent = navigator.userAgent.match(/iPad/i) != null;
+			var iPodAgent = navigator.userAgent.match(/iPhone|iPod/i) != null;
+			var AndroidAgent = navigator.userAgent.match(/Android/i) != null;
+			var webOSAgent = navigator.userAgent.match(/webOS/i) != null;
+			var WindowsAgent = navigator.userAgent.match(/IEMobile/i) != null;
+			var BlackberryAgent = navigator.userAgent.match(/BlackBerry/i) != null;
+			var myMedia = null;
+			var playing = false;
+			var mediaTimer = false;
+			var sec = 0;
+            document.addEventListener("deviceready", onDeviceReady, false);
+            function onDeviceReady() {
+				/*document.getElementById('textpositiondiv').innerHTML = 'Nombre del dispositivo: '  + device.name     + '<br />' + 
+				'Versión Phonegap: '       + device.phonegap + '<br />' + 
+				'Plataforma: '          + device.platform + '<br />' + 
+				'UUID: '            + device.uuid     + '<br />' + 
+				'Versión: '            + device.version  + '<br />';*/
+				//document.getElementById('textposition').innerHTML = 'Porfavor espera, estamos cargando la app optimizada para tu dispositivo.';
+				if( device.platform == "Android" && version_compare(device.version, '3.2', '<') ) {
+					addScript('js/media.js');
+					$('#contenidoAPP').html('<style type="text/css"> #playcontrols #activityindicator, #playcontrols #stopbutton { display: block; } #radio_1, #radio_2, #radio_3 { line-height:4; margin-top: -5px; } </style><section class="player"><div id="playcontrols"><a href="#" id="stopbutton" onClick="stopAudio();return false;"><img src="images/stopbutton.png" /></a></div></section><div id="textpositiondiv"><span id="textposition">detenido</span></div><div id="playing">&nbsp;</div><a href="mailto:christiandaniel.aceves@cemex.com" to="direccion@studioweb.com"><img alt="" src="images/comentarios.png" /></a><div id="encuesta"><h3 id="titulo-before" style="font-size:80%;">&iquest; Qu&eacute; opinas de la programaci&oacute;n de Cemex Radio ?</h3><div id="radio_1"><input name="encuesta2" type="radio" id="encuesta2" value="1" checked="checked" /> Me gusta</div><div id="radio_2"><input type="radio" name="encuesta2" id="encuesta2" value="2" /> No me Gusta</div><div id="radio_3"><input type="radio" name="encuesta2" id="encuesta2" value="3" /> Puede Mejorar</div><div id="encuesta_html"></div><div id="encuesta_res"><a href="javascript:void(0)" onclick="vota();"><img class="vota-btn" alt="" src="images/boton-califica.jpg" height="14"/></a></div></div><a id="califica" href="" onclick="window.open(this.href,\'_system\'); return false;" ><img alt="" src="images/boton-app.jpg" height="42"/></a>');
+					iniciaMediaPlayer();
+					//window.location = 'android.html';
+				} else {
+					addScript('js/html5audio.js');
+					$('#contenidoAPP').html('<section class="player"><div id="playcontrols"><a href="#" id="playbutton" onClick="html5audio.play();return false;"><img src="images/playbutton.png" border="0"/></a><a href="#" id="activityindicator" onClick="html5audio.stop();return false;"><img src="images/activityindicator.gif" border="0"/></a><a href="#" id="stopbutton" onClick="html5audio.stop();return false;"><img src="images/stopbutton.png" border="0"/></a></div></section><div id="textpositiondiv"><span id="textposition">detenido</span></div><div id="playing">&nbsp;</div><a href="mailto:christiandaniel.aceves@cemex.com" to="direccion@studioweb.com"><img alt="" src="images/comentarios.png" /></a><div id="encuesta"><h3 id="titulo-before">&iquest; Qu&eacute; opinas de la programaci&oacute;n de Cemex Radio ?</h3><div id="radio_1"><input name="encuesta2" type="radio" id="encuesta2" value="1" checked="checked" /> Me gusta</div><div id="radio_2"><input type="radio" name="encuesta2" id="encuesta2" value="2" /> No me Gusta</div><div id="radio_3"><input type="radio" name="encuesta2" id="encuesta2" value="3" /> Puede Mejorar</div><div id="encuesta_html"></div><div id="encuesta_res"><a href="javascript:void(0)" onclick="vota();"><img class="vota-btn" alt="" src="images/boton-califica.jpg" height="14" border="0"/></a></div></div><a id="califica" href="" onclick="window.open(this.href,\'_system\'); return false;" ><img alt="" src="images/boton-app.jpg" height="42" border="0"/></a>');
+					iniciaHTML5Player();
+					//window.location = 'full.html';
+				}
+				if(iPadAgent || iPodAgent ){
+					$('#califica').attr('href', 'itms-apps://itunes.apple.com/app/id720967933');
+				}
+				if( AndroidAgent ){
+					$('#califica').attr('href', 'market://details?id=com.CEMEXRadioAPP.app');
+				}
+				if( WindowsAgent ){
+					$('#califica').attr('href', 'http://windowsphone.com/s?appId=015d43e0-0d03-4e49-8eb9-9e868aabc629');
+				}
+            }
+        </script>
+        
+    </head>
+    <body>
+        <header>
+            <a href="flickr://photos/cemex"><img src="images/flickr.png" border="0" /></a>
+            <a href="youtube://user/CEMEXMx"><img src="images/youtube.png" border="0" /></a>
+            <a href="twitter:///user?screen_name=CEMEXMx"><img src="images/twitter.png" border="0"/></a>
+            <a href="fb://profile/254852601222832"><img src="images/facebook.png" border="0"/></a>
+        </header>    
+        <img alt="" src="images/bg.jpg" />
+		<div id="contenidoAPP">
+            <div id="textpositiondiv"><span id="textposition"><img src="images/activityindicator.gif" border="0"><br>Optimizando aplicaci&oacute;n...</span></div>
+        </div>
+        
+        <footer>
+        Copyrights &copy; CEMEX S.A.B. de C.V. Derechos Reservados<br>
+        <strong>&Iota;</strong><a href="#"> Contacto </a> <strong>&Iota;</strong><a href="http://www.cemexmexico.com/PoliticasDePrivacidad.aspx" onclick="window.open(this.href,'_system'); return false;"> Pol&iacute;ticas de Privacidad </a><strong>&Iota;</strong><a href="http://www.cemexmexico.com/TerminosCondiciones.aspx" onclick="window.open(this.href,'_system'); return false;"> T&eacute;rminos y Condiciones </a><strong>&Iota;</strong><br>
+        Protecci&oacute;n de datos Personales
+        </footer>
+    </body>
 </html>
